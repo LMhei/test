@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01第一个HTML文件</title>
+    <style>
+        #d2{
+            width: auto;
+            height: auto;
+            background-image: url("https://img.picui.cn/free/2024/10/29/6720555d4399c.jpeg");
+            background-repeat: repeat;
+        }
+    </style>
+    <script>
+        function displayDate(){
+            document.getElementById("demo").innerHTML=Date();
+        }
+    </script>
+</head>
+<body>
+<!--HTML注释-->
+<p>段落标签</p>
+<!--
+<h>超文本标记语言
+<p>段落标签
+<div>块级元素独占一行
+<href>
+-->
+<a href="https://www.douyin.com/" style="text-decoration: underline; color: red;">
+    点击访问抖音
+    <img src="../images/0.jpg" alt=""></img>
+</a>
+<table border="2px">
+    <!--表格-->
+    <tr>
+        <th><a href="https://www.douyin.com/" style="text-decoration: none; color: black;">星期一</a></th>
+        <th><a href="https://www.xiaohongshu.com/" style="text-decoration: none; color: black;">星期二</a></th>
+        <th><a href="https://www.github.com/" style="text-decoration: none; color: black;">星期三</a></th>
+        <th><a href="https://www.pronhub.com/" style="text-decoration: none; color: black;">星期四</a></th>
+        <th><a href="https://www.x.com/" style="text-decoration: none; color: black;">星期五</a></th>
+        <th><a href="https://www.bilibili.com/" style="text-decoration: none; color: black;">星期六</a></th>
+        <th><a href="https://www.weibo.com/" style="text-decoration: none; color: black;">星期日</a></th>
+    </tr>
+</table>
+<div>div块级元素</div>
+<span>span行级元素</span>
+<h1>一级标题</h1>
+<h2>二级标题</h2>
+<h3>三级标题</h3>
+<h4>四级标题</h4>
+<h5>五级标题</h5>
+<h6>六级标题</h6>
+
+<h1>我的视频</h1>
+
+
+<div id="d2">
+    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113362037904574&bvid=BV13ay6YJEv8&cid=26442008920&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113335697678070&bvid=BV1LFytYXEwN&cid=26370507645&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+    <video >
+        <source src="../images/1.mp4" type="video/mp4">
+        <source src="https://www.bilibili.com/video/BV1LFytYXEwN" type="video/ogg">
+    </video>
+</div>
+
+<h1>我的第一个 JavaScript 程序</h1>
+<p id="demo">这是一个段落</p>
+
+<button type="button" onclick="displayDate()">显示日期</button>
+
+</body>
+</html>
+/* width="1280" height="720" controls */
