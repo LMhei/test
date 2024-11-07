@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+</head>
+<body>
+<div class="layui-form layuimini-form" style="padding: 20px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">ID</label>
+        <div class="layui-input-block">
+            <input type="text" name="id" lay-verify="required" lay-reqtext="ID不能为空" placeholder="请输入院系ID" class="layui-input">
+            <tip>填写院系的唯一标识 ID。</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">院系代号</label>
+        <div class="layui-input-block">
+            <input type="text" name="deptCode" lay-verify="required" lay-reqtext="院系代号不能为空" placeholder="请输入院系代号" class="layui-input">
+            <tip>填写院系的代号，例如：CS、EE 等。</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">院系名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="deptName" lay-verify="required" lay-reqtext="院系名称不能为空" placeholder="请输入院系名称" class="layui-input">
+            <tip>填写完整的院系名称，例如：计算机科学与技术学院。</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <textarea name="remarks" placeholder="请输入备注信息" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="addDept">提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/layui-src/dist/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+
+        // 提交表单事件监听
+        form.on('submit(addDept)', function (data) {
+            var formData = data.field;
+            // 此处可以将表单数据提交到后端处理
+            console.log(formData);
+            layer.msg('院系信息提交成功！');
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

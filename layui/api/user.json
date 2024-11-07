@@ -1,0 +1,57 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 5,
+  "data": [
+    {
+      "id":1001,
+      "username":"zs",
+      "deptName": "计算机科学与技术学院",
+      "majorName": "物联网",
+      "class": "一班",
+      "grade": 2023,
+      "phone": "12345678901",
+      "flag": 1
+    },
+    {
+      "id":1002,
+      "username":"lisi",
+      "deptName": "计算机科学与技术学院",
+      "majorName": "物联网",
+      "class": "一班",
+      "grade": 2023,
+      "phone": "12345678901",
+      "flag": 1
+    },
+    {
+      "id":1003,
+      "username":"ww",
+      "deptName": "计算机科学与技术学院",
+      "majorName": "物联网",
+      "class": "一班",
+      "grade": 2023,
+      "phone": "12345678901",
+      "flag": 1
+    },
+    {
+      "id":1004,
+      "username":"zl",
+      "deptName": "计算机科学与技术学院",
+      "majorName": "物联网",
+      "class": "一班",
+      "grade": 2023,
+      "phone": "12345678901",
+      "flag": 0
+    },
+    {
+      "id":1005,
+      "username":"qq",
+      "deptName": "计算机科学与技术学院",
+      "majorName": "物联网",
+      "class": "一班",
+      "grade": 2023,
+      "phone": "12345678901",
+      "flag": 1
+    }
+  ]
+}

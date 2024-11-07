@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery</title>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script>
+        /* 页面加载后立即执行 */
+        $(function() {
+            var username = $("#username").val(); // 获取初始值
+            alert(username);
+            var divVal = $("#d0").html(); // 获取div内容
+            alert(divVal);
+            $("#username").val("张三"); // 设置新的用户名
+            $("#d0").html("<span style='color: greenyellow'>这是span标签</span>"); // 更新div内容
+        });
+    </script>
+</head>
+<body>
+<h2>JQ基本使用</h2>
+<input type="text" id="username" value="admin"><br/>
+<div id="d0">这是div</div>
+</body>
+</html>

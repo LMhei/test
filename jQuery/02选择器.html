@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>选择器</title>
+  <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+  <script>
+    $(function() {
+      alert("hello");
+      $("#btn").click(function() {
+        $("#d0").html(); // 修改 d0 div 的内容
+        $("*").css("background-color", "blue");
+        $(".d1").css("background-color", "red"); // 修改类 d1 的背景色为红色
+        //alert("按钮被点击了！");
+        console.log($("p"));
+        $("p").css("background-color", "green");
+      });
+    });
+
+    function f() {
+      alert("测试");
+    }
+  </script>
+</head>
+<body>
+<div id="d0">太原科技大学</div>
+<div class="d1">TYUST</div>
+<div>中北大学</div>
+<button id="btn" type="button">clickMe</button>
+<button id="btn2" type="button" onclick="f()">clickMe2</button>
+</body>
+</html>
