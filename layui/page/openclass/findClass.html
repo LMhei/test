@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../lib/layui-v2.6.3/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+  <div class="layuimini-main">
+
+    <!-- 搜索信息 -->
+    <fieldset class="table-search-fieldset">
+      <legend>搜索信息</legend>
+      <div style="margin: 10px;">
+        <form class="layui-form layui-form-pane" action="">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">日期</label>
+              <div class="layui-input-inline">
+                <input type="text" name="date" id="searchDate" autocomplete="off" class="layui-input" placeholder="选择日期">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">院系</label>
+              <div class="layui-input-inline">
+                <select name="deptName" lay-filter="deptName">
+                  <option value="">请选择院系</option>
+                  <option value="computer">计算机科学与技术学院</option>
+                  <option value="engineering">工程学院</option>
+                  <!-- 更多院系选项 -->
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">年级</label>
+              <div class="layui-input-inline">
+                <input type="text" name="grade" autocomplete="off" class="layui-input" placeholder="输入年级">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="data-search-btn">搜索</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </fieldset>
+
+    <!-- 数据表格 -->
+    <table class="layui-hide" id="courseTable" lay-filter="courseTableFilter"></table>
+
+    <!-- 表格操作栏 -->
+    <script type="text/html" id="toolbarDemo">
+      <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">添加公开课</button>
+      </div>
+    </script>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/layui-src/dist/layui.js" charset="utf-8"></script>
+<script>
+  layui.use(['form', 'table', 'laydate'], function () {
+    var form = layui.form,
+            table = layui.table,
+            laydate = layui.laydate;
+
+    // 日期选择器
+    laydate.render({
+      elem: '#searchDate',
+      type: 'date'
+    });
+
+    // 渲染表格
+    table.render({
+      elem: '#courseTable',
+      url: '../../api/course.json',  // 数据接口（请根据实际情况替换为正确的 API 路径）
+      toolbar: '#toolbarDemo',
+      defaultToolbar: ['filter', 'exports', 'print'],
+      cols: [[
+        {field: 'date', width: 120, title: '日期', sort: true},
+        {field: 'topic', width: 200, title: '技术专题'},
+        {field: 'speaker', width: 120, title: '主讲人'},
+        {field: 'organizer', width: 120, title: '组织人'},
+        {field: 'location', width: 150, title: '地点'},
+        {field: 'grade', width: 80, title: '年级', sort: true},
+        {field: 'mode', width: 80, title: '方式', sort: true},
+        {field: 'credits', width: 80, title: '学分'},
+        {field: 'attendees', width: 100, title: '参加人数'}
+      ]],
+      page: true,
+      limit: 15,
+      skin: 'line'
+    });
+
+    // 监听搜索操作
+    form.on('submit(data-search-btn)', function (data) {
+      var searchParams = data.field;
+
+      // 执行搜索重载
+      table.reload('courseTable', {
+        page: {
+          curr: 1 // 重新从第 1 页开始
+        },
+        where: searchParams
+      });
+      return false; // 阻止表单跳转
+    });
+
+    // 监听表头操作按钮
+    table.on('toolbar(courseTableFilter)', function (obj) {
+      if (obj.event === 'add') {
+        layer.open({
+          title: '添加公开课',
+          type: 2,
+          area: ['100%', '100%'],
+          content: 'addCourse.html'
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>

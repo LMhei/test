@@ -1,11 +1,11 @@
 {
   "homeInfo": {
     "title": "首页",
-    "href": "page/home.html"
+    "href": "page/welcome-1.html"
   },
   "logoInfo": {
     "title": "UOLab",
-    "image": "images/logo.png",
+    "image": "images/logo.jpg",
     "href": ""
   },
   "menuInfo": [
