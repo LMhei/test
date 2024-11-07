@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../lib/layui-v2.6.3/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+  <div class="layuimini-main">
+
+    <!-- 搜索表单 -->
+    <fieldset class="table-search-fieldset">
+      <legend>搜索信息</legend>
+      <div style="margin: 10px;">
+        <form class="layui-form layui-form-pane" action="">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">院系</label>
+              <div class="layui-input-inline">
+                <input type="text" name="deptName" autocomplete="off" class="layui-input" placeholder="请输入院系名称">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">专业名称</label>
+              <div class="layui-input-inline">
+                <input type="text" name="majorName" autocomplete="off" class="layui-input" placeholder="请输入专业名称">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn" lay-submit lay-filter="data-search-btn">搜索</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </fieldset>
+
+    <!-- 表格工具栏 -->
+    <script type="text/html" id="toolbarDemo">
+      <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add">添加专业</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete">删除选中</button>
+      </div>
+    </script>
+
+    <!-- 专业表格 -->
+    <table class="layui-hide" id="majorTable" lay-filter="majorTableFilter"></table>
+
+    <!-- 操作列模板 -->
+    <script type="text/html" id="currentTableBar">
+      <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+      <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">删除</a>
+    </script>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/layui-src/dist/layui.js" charset="utf-8"></script>
+<script>
+  layui.use(['form', 'table'], function () {
+    var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+
+    // 渲染表格
+    table.render({
+      elem: '#majorTable',
+      url: '../../api/major.json',  // 数据接口
+      toolbar: '#toolbarDemo',
+      defaultToolbar: ['filter', 'exports', 'print'],
+      cols: [[
+        {type: "checkbox", width: 50},
+        {field: 'id', width: 80, title: 'ID', sort: true},
+        {field: 'deptName', width: 150, title: '院系名称',sort: true},
+        {field: 'majorName', width: 150, title: '专业名称'},
+        {field: 'remarks', width: 200, title: '备注'},
+        {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+      ]],
+      limits: [10, 15, 20, 25],
+      limit: 10,
+      page: true,
+      skin: 'line'
+    });
+
+    // 搜索操作
+    form.on('submit(data-search-btn)', function (data) {
+      var searchParams = data.field;
+      table.reload('majorTable', {
+        page: { curr: 1 },
+        where: searchParams
+      });
+      return false;
+    });
+
+    // 工具栏事件
+    table.on('toolbar(majorTableFilter)', function (obj) {
+      if (obj.event === 'add') {  // 添加操作
+        var index = layer.open({
+          title: '添加专业',
+          type: 2,
+          shade: 0.2,
+          area: ['70%', '80%'],
+          content: 'addMajor.html',
+        });
+      } else if (obj.event === 'delete') {  // 删除操作
+        var checkStatus = table.checkStatus('majorTable'),
+                data = checkStatus.data;
+        if(data.length === 0) {
+          layer.msg("请选择要删除的专业");
+        } else {
+          layer.confirm('确定删除选中的专业吗？', function (index) {
+            // 执行删除操作（这里可以向后端发送删除请求）
+            layer.msg("删除成功");
+            table.reload('majorTable');  // 重新加载表格
+            layer.close(index);
+          });
+        }
+      }
+    });
+
+    // 监听表格操作按钮
+    table.on('tool(majorTableFilter)', function (obj) {
+      var data = obj.data;
+      if (obj.event === 'edit') {  // 编辑操作
+        var index = layer.open({
+          title: '编辑专业',
+          type: 2,
+          shade: 0.2,
+          area: ['70%', '80%'],
+          content: 'editMajor.html?id=' + data.id,
+        });
+      } else if (obj.event === 'delete') {  // 删除操作
+        layer.confirm('确定删除该专业吗？', function (index) {
+          obj.del();
+          layer.close(index);
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>

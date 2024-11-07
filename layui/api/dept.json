@@ -1,14 +1,37 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LMhei/test.git"
-  },
-  "private": true
+  "code": 0,
+  "msg": "",
+  "count": 5,
+  "data": [
+    {
+      "id":1001,
+      "deptCode":"11",
+      "deptName": "计算机科学与技术学院",
+      "remarks": ""
+    },
+    {
+      "id":1002,
+      "deptCode":"12",
+      "deptName": "电子信息工程学院",
+      "remarks": ""
+    },
+    {
+      "id":1003,
+      "deptCode":"13",
+      "deptName": "机械工程学院",
+      "remarks": ""
+    },
+    {
+      "id":1004,
+      "deptCode":"14",
+      "deptName": "外国语学院",
+      "remarks": ""
+    },
+    {
+      "id":1005,
+      "deptCode":"15",
+      "deptName": "体育学院",
+      "remarks": ""
+    }
+  ]
 }
